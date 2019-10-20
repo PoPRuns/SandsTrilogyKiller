@@ -1,0 +1,83 @@
+﻿using System;
+using System.Windows.Forms;
+
+namespace SandsTrilogyKiller
+{
+    public partial class MainForm : Form
+    {
+        private KeyboardHook hook = new KeyboardHook();
+
+        public MainForm()
+        {
+            InitializeComponent();
+            cmbActiveGame.SelectedIndex = Properties.Settings.Default.activeGame;
+            hook.Hotkey = Properties.Settings.Default.hotkey;
+            txtHotkey.Text = hook.Hotkey.ToString();
+            txtPathSoT.Text = Properties.Settings.Default.pathSoT;
+            txtPathWW.Text = Properties.Settings.Default.pathWW;
+            txtPathT2T.Text = Properties.Settings.Default.pathT2T;
+            SetGameLauncherPath();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.activeGame = cmbActiveGame.SelectedIndex;
+            Properties.Settings.Default.hotkey = hook.Hotkey;
+            Properties.Settings.Default.pathSoT = txtPathSoT.Text;
+            Properties.Settings.Default.pathWW = txtPathWW.Text;
+            Properties.Settings.Default.pathT2T = txtPathT2T.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        void OpenFileDialog(TextBox linkedTextBox)
+        {
+            var dialogResult = openFileDialog.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                linkedTextBox.Text = openFileDialog.FileName;
+            }
+        }
+
+        private void BtnChangePathSoT_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog(txtPathSoT);
+        }
+
+        private void BtnChangePathWW_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog(txtPathWW);
+        }
+
+        private void BtnChangePathT2T_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog(txtPathT2T);
+        }
+
+        private void TxtHotkey_KeyDown(object sender, KeyEventArgs e)
+        {
+            hook.Hotkey = e.KeyCode;
+            txtHotkey.Text = hook.Hotkey.ToString();
+        }
+
+        private void CurrentGameLauncherPathChanged(object sender, EventArgs e)
+        {
+            SetGameLauncherPath();
+        }
+
+        void SetGameLauncherPath()
+        {
+            switch (cmbActiveGame.SelectedIndex)
+            {
+                case 0:
+                    hook.GameLauncherPath = txtPathSoT.Text;
+                    break;
+                case 1:
+                    hook.GameLauncherPath = txtPathWW.Text;
+                    break;
+                case 2:
+                    hook.GameLauncherPath = txtPathT2T.Text;
+                    break;
+            }
+        }
+    }
+}

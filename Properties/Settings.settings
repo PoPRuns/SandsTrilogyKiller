@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SandsTrilogyKiller.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="pathSoT" Type="System.String" Scope="User">
+      <Value Profile="(Default)">sot.lnk</Value>
+    </Setting>
+    <Setting Name="pathWW" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ww.lnk</Value>
+    </Setting>
+    <Setting Name="pathT2T" Type="System.String" Scope="User">
+      <Value Profile="(Default)">t2t.lnk</Value>
+    </Setting>
+    <Setting Name="activeGame" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="hotkey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">NumPad5</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
