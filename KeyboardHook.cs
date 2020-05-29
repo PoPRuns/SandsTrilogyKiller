@@ -36,7 +36,6 @@ namespace SandsTrilogyKiller
                     CloseProcesses(Process.GetProcessesByName("POP"));
                     CloseProcesses(Process.GetProcessesByName("POP2"));
                     CloseProcesses(Process.GetProcessesByName("POP3"));
-                    CloseProcesses(Process.GetProcessesByName("PrinceOfPersia"));
                     try
                     {
                         Process.Start(GameLauncherPath);
@@ -52,13 +51,21 @@ namespace SandsTrilogyKiller
             return CallNextHookEx(hookId, nCode, wParam, lParam);
         }
 
-        private static void CloseProcesses(Process[] processes)
+        public static void CloseProcesses(Process[] processes)
         {
             foreach (var process in processes)
             {
                 process.CloseMainWindow();
                 process.WaitForExit();
                 process.Dispose();
+            }
+        }
+
+        public static void ForceCloseProcesses(Process[] processes)
+        {
+            foreach (var process in processes)
+            {
+                process.Kill();
             }
         }
 

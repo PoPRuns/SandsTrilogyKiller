@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SandsTrilogyKiller
@@ -77,6 +79,44 @@ namespace SandsTrilogyKiller
                 case 2:
                     hook.GameLauncherPath = txtPathT2T.Text;
                     break;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+            if (hook.GameLauncherPath == txtPathSoT.Text)
+            {
+                String princeOfPersiaFile = hook.GameLauncherPath.Substring(0, hook.GameLauncherPath.Length - 7) + "PrinceOfPersia.EXE";
+                if (File.Exists(princeOfPersiaFile))
+                {
+                    try
+                    {
+                        Process.Start(princeOfPersiaFile);
+                        
+                    } catch
+                    {
+                        MessageBox.Show("Could not start process \"" + hook.GameLauncherPath + "\"",
+                                       "Error starting Process",
+                                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    System.Threading.Thread.Sleep(4000);
+                    KeyboardHook.ForceCloseProcesses(Process.GetProcessesByName("POP"));
+                }
+
+            } else if(hook.GameLauncherPath == txtPathWW.Text || hook.GameLauncherPath == txtPathT2T.Text)
+            {
+                String princeOfPersiaFile = hook.GameLauncherPath.Substring(0, hook.GameLauncherPath.Length - 8) + "PrinceOfPersia.EXE";
+                try
+                {
+                    Process.Start(princeOfPersiaFile);
+                }
+                catch
+                {
+                    MessageBox.Show("Could not start process \"" + hook.GameLauncherPath + "\"",
+                                   "Error starting Process",
+                                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

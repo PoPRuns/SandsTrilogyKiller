@@ -41,16 +41,16 @@
             this.lblHotkey = new System.Windows.Forms.Label();
             this.txtHotkey = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtPathSoT
             // 
             this.txtPathSoT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPathSoT.Location = new System.Drawing.Point(64, 58);
-            this.txtPathSoT.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPathSoT.Location = new System.Drawing.Point(48, 47);
             this.txtPathSoT.Name = "txtPathSoT";
-            this.txtPathSoT.Size = new System.Drawing.Size(467, 22);
+            this.txtPathSoT.Size = new System.Drawing.Size(392, 20);
             this.txtPathSoT.TabIndex = 2;
             this.txtPathSoT.TextChanged += new System.EventHandler(this.CurrentGameLauncherPathChanged);
             // 
@@ -58,20 +58,18 @@
             // 
             this.txtPathWW.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPathWW.Location = new System.Drawing.Point(64, 90);
-            this.txtPathWW.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPathWW.Location = new System.Drawing.Point(48, 73);
             this.txtPathWW.Name = "txtPathWW";
-            this.txtPathWW.Size = new System.Drawing.Size(467, 22);
+            this.txtPathWW.Size = new System.Drawing.Size(392, 20);
             this.txtPathWW.TabIndex = 3;
             this.txtPathWW.TextChanged += new System.EventHandler(this.CurrentGameLauncherPathChanged);
             // 
             // btnChangePathSoT
             // 
             this.btnChangePathSoT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChangePathSoT.Location = new System.Drawing.Point(540, 55);
-            this.btnChangePathSoT.Margin = new System.Windows.Forms.Padding(4);
+            this.btnChangePathSoT.Location = new System.Drawing.Point(446, 45);
             this.btnChangePathSoT.Name = "btnChangePathSoT";
-            this.btnChangePathSoT.Size = new System.Drawing.Size(40, 28);
+            this.btnChangePathSoT.Size = new System.Drawing.Size(30, 23);
             this.btnChangePathSoT.TabIndex = 5;
             this.btnChangePathSoT.Text = "...";
             this.btnChangePathSoT.UseVisualStyleBackColor = true;
@@ -80,10 +78,9 @@
             // btnChangePathWW
             // 
             this.btnChangePathWW.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChangePathWW.Location = new System.Drawing.Point(540, 87);
-            this.btnChangePathWW.Margin = new System.Windows.Forms.Padding(4);
+            this.btnChangePathWW.Location = new System.Drawing.Point(446, 71);
             this.btnChangePathWW.Name = "btnChangePathWW";
-            this.btnChangePathWW.Size = new System.Drawing.Size(40, 28);
+            this.btnChangePathWW.Size = new System.Drawing.Size(30, 23);
             this.btnChangePathWW.TabIndex = 6;
             this.btnChangePathWW.Text = "...";
             this.btnChangePathWW.UseVisualStyleBackColor = true;
@@ -93,20 +90,18 @@
             // 
             this.txtPathT2T.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPathT2T.Location = new System.Drawing.Point(64, 122);
-            this.txtPathT2T.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPathT2T.Location = new System.Drawing.Point(48, 99);
             this.txtPathT2T.Name = "txtPathT2T";
-            this.txtPathT2T.Size = new System.Drawing.Size(467, 22);
+            this.txtPathT2T.Size = new System.Drawing.Size(392, 20);
             this.txtPathT2T.TabIndex = 4;
             this.txtPathT2T.TextChanged += new System.EventHandler(this.CurrentGameLauncherPathChanged);
             // 
             // btnChangePathT2T
             // 
             this.btnChangePathT2T.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChangePathT2T.Location = new System.Drawing.Point(540, 119);
-            this.btnChangePathT2T.Margin = new System.Windows.Forms.Padding(4);
+            this.btnChangePathT2T.Location = new System.Drawing.Point(446, 97);
             this.btnChangePathT2T.Name = "btnChangePathT2T";
-            this.btnChangePathT2T.Size = new System.Drawing.Size(40, 28);
+            this.btnChangePathT2T.Size = new System.Drawing.Size(30, 23);
             this.btnChangePathT2T.TabIndex = 7;
             this.btnChangePathT2T.Text = "...";
             this.btnChangePathT2T.UseVisualStyleBackColor = true;
@@ -116,10 +111,9 @@
             // 
             this.lblPathSoT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPathSoT.AutoSize = true;
-            this.lblPathSoT.Location = new System.Drawing.Point(16, 62);
-            this.lblPathSoT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPathSoT.Location = new System.Drawing.Point(12, 50);
             this.lblPathSoT.Name = "lblPathSoT";
-            this.lblPathSoT.Size = new System.Drawing.Size(38, 17);
+            this.lblPathSoT.Size = new System.Drawing.Size(30, 13);
             this.lblPathSoT.TabIndex = 9;
             this.lblPathSoT.Text = "SoT:";
             // 
@@ -127,10 +121,9 @@
             // 
             this.lblPathWW.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPathWW.AutoSize = true;
-            this.lblPathWW.Location = new System.Drawing.Point(16, 94);
-            this.lblPathWW.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPathWW.Location = new System.Drawing.Point(12, 76);
             this.lblPathWW.Name = "lblPathWW";
-            this.lblPathWW.Size = new System.Drawing.Size(38, 17);
+            this.lblPathWW.Size = new System.Drawing.Size(32, 13);
             this.lblPathWW.TabIndex = 10;
             this.lblPathWW.Text = "WW:";
             // 
@@ -138,10 +131,9 @@
             // 
             this.lblPathT2T.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPathT2T.AutoSize = true;
-            this.lblPathT2T.Location = new System.Drawing.Point(16, 126);
-            this.lblPathT2T.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPathT2T.Location = new System.Drawing.Point(12, 102);
             this.lblPathT2T.Name = "lblPathT2T";
-            this.lblPathT2T.Size = new System.Drawing.Size(38, 17);
+            this.lblPathT2T.Size = new System.Drawing.Size(30, 13);
             this.lblPathT2T.TabIndex = 11;
             this.lblPathT2T.Text = "T2T:";
             // 
@@ -153,10 +145,9 @@
             "Sands of Time",
             "Warrior Within",
             "The Two Thrones"});
-            this.cmbActiveGame.Location = new System.Drawing.Point(16, 15);
-            this.cmbActiveGame.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbActiveGame.Location = new System.Drawing.Point(12, 12);
             this.cmbActiveGame.Name = "cmbActiveGame";
-            this.cmbActiveGame.Size = new System.Drawing.Size(211, 24);
+            this.cmbActiveGame.Size = new System.Drawing.Size(159, 21);
             this.cmbActiveGame.TabIndex = 0;
             this.cmbActiveGame.SelectedIndexChanged += new System.EventHandler(this.CurrentGameLauncherPathChanged);
             // 
@@ -164,21 +155,19 @@
             // 
             this.lblHotkey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHotkey.AutoSize = true;
-            this.lblHotkey.Location = new System.Drawing.Point(330, 18);
-            this.lblHotkey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHotkey.Location = new System.Drawing.Point(289, 15);
             this.lblHotkey.Name = "lblHotkey";
-            this.lblHotkey.Size = new System.Drawing.Size(56, 17);
+            this.lblHotkey.Size = new System.Drawing.Size(44, 13);
             this.lblHotkey.TabIndex = 8;
             this.lblHotkey.Text = "Hotkey:";
             // 
             // txtHotkey
             // 
             this.txtHotkey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtHotkey.Location = new System.Drawing.Point(394, 15);
-            this.txtHotkey.Margin = new System.Windows.Forms.Padding(4);
+            this.txtHotkey.Location = new System.Drawing.Point(337, 12);
             this.txtHotkey.Name = "txtHotkey";
             this.txtHotkey.ReadOnly = true;
-            this.txtHotkey.Size = new System.Drawing.Size(185, 22);
+            this.txtHotkey.Size = new System.Drawing.Size(140, 20);
             this.txtHotkey.TabIndex = 1;
             this.txtHotkey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtHotkey_KeyDown);
             // 
@@ -186,11 +175,22 @@
             // 
             this.openFileDialog.Filter = "PoP Launcher|PrinceOfPersia.exe|All Files (*.*)|*.*";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(200, 7);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(79, 29);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "ready";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 151);
+            this.ClientSize = new System.Drawing.Size(488, 129);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txtHotkey);
             this.Controls.Add(this.lblHotkey);
             this.Controls.Add(this.cmbActiveGame);
@@ -203,10 +203,9 @@
             this.Controls.Add(this.btnChangePathSoT);
             this.Controls.Add(this.txtPathWW);
             this.Controls.Add(this.txtPathSoT);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1061, 198);
-            this.MinimumSize = new System.Drawing.Size(18, 198);
+            this.MaximumSize = new System.Drawing.Size(800, 168);
+            this.MinimumSize = new System.Drawing.Size(18, 168);
             this.Name = "MainForm";
             this.Text = "SandsTrilogyKiller";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -230,6 +229,7 @@
         private System.Windows.Forms.Label lblHotkey;
         private System.Windows.Forms.TextBox txtHotkey;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Button button1;
     }
 }
 
