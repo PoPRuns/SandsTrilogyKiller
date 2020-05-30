@@ -8,10 +8,11 @@ namespace SandsTrilogyKiller
     class KeyboardHook
     {
         private const int WH_KEYBOARD_LL = 13;
-        private const int WM_KEYDOWN = 0x0100;
+        private const int WM_KEYUP = 0x0101;
         private readonly LowLevelKeyboardProc proc;
         private readonly IntPtr hookId;
 
+        public int killerSpeed = 0;
         public string GameLauncherPath { get; set; }
         public Keys Hotkey { get; set; }
 
@@ -28,7 +29,7 @@ namespace SandsTrilogyKiller
 
         private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
+            if (nCode >= 0 && wParam == (IntPtr)WM_KEYUP)
             {
                 Keys vkCode = (Keys)Marshal.ReadInt32(lParam);
                 if (vkCode == Hotkey)
@@ -38,6 +39,7 @@ namespace SandsTrilogyKiller
                     CloseProcesses(Process.GetProcessesByName("POP3"));
                     try
                     {
+                        System.Threading.Thread.Sleep(killerSpeed);
                         Process.Start(GameLauncherPath);
                     }
                     catch
@@ -48,6 +50,7 @@ namespace SandsTrilogyKiller
                     }
                 }
             }
+
             return CallNextHookEx(hookId, nCode, wParam, lParam);
         }
 
