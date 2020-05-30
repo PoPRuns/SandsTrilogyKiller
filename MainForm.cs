@@ -93,7 +93,7 @@ namespace SandsTrilogyKiller
                     try
                     {
                         Process.Start(princeOfPersiaFile);
-                        System.Threading.Thread.Sleep(int.Parse(label1.Text.ToString()));
+                        System.Threading.Thread.Sleep(trackBar1.Value);
 
                     } catch
                     {
@@ -122,12 +122,14 @@ namespace SandsTrilogyKiller
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            label1.Text = trackBar1.Value.ToString();
+            label1.Text = trackBar1.Value.ToString() + " ms";
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void trackBar2_Scroll(object sender, EventArgs e)
         {
-            
+            hook.killerSpeed = trackBar2.Value;
+            label4.Text = trackBar2.Value.ToString() + " ms";
         }
+
     }
 }
