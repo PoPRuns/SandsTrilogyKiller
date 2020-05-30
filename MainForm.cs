@@ -93,14 +93,14 @@ namespace SandsTrilogyKiller
                     try
                     {
                         Process.Start(princeOfPersiaFile);
-                        
+                        System.Threading.Thread.Sleep(int.Parse(label1.Text.ToString()));
+
                     } catch
                     {
                         MessageBox.Show("Could not start process \"" + hook.GameLauncherPath + "\"",
                                        "Error starting Process",
                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    System.Threading.Thread.Sleep(4000);
                     KeyboardHook.ForceCloseProcesses(Process.GetProcessesByName("POP"));
                 }
 
@@ -118,6 +118,16 @@ namespace SandsTrilogyKiller
                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            label1.Text = trackBar1.Value.ToString();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
