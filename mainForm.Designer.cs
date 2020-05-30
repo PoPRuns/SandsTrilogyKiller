@@ -173,7 +173,7 @@
             // 
             // openFileDialog
             // 
-            this.openFileDialog.Filter = "PoP Launcher|PrinceOfPersia.exe|All Files (*.*)|*.*";
+            this.openFileDialog.Filter = "PoP Executable|pop.exe;pop2.exe;pop3.exe|All Files (*.*)|*.*";
             // 
             // button1
             // 
