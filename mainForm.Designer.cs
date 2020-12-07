@@ -41,15 +41,11 @@
             this.lblHotkey = new System.Windows.Forms.Label();
             this.txtHotkey = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.trackBar2 = new System.Windows.Forms.TrackBar();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            this.btnReady = new System.Windows.Forms.Button();
+            this.trackBarKillerDelay = new System.Windows.Forms.TrackBar();
+            this.labelKillerDelay = new System.Windows.Forms.Label();
+            this.labelKillerDelayMs = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarKillerDelay)).BeginInit();
             this.SuspendLayout();
             // 
             // txtPathSoT
@@ -184,80 +180,48 @@
             // 
             this.openFileDialog.Filter = "PoP Executable|pop.exe;pop2.exe;pop3.exe|All Files (*.*)|*.*";
             // 
-            // button1
+            // btnReady
             // 
-            this.button1.Location = new System.Drawing.Point(190, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(79, 29);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "ready";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnReady.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReady.Location = new System.Drawing.Point(190, 7);
+            this.btnReady.Name = "btnReady";
+            this.btnReady.Size = new System.Drawing.Size(79, 29);
+            this.btnReady.TabIndex = 12;
+            this.btnReady.Text = "ready";
+            this.btnReady.UseVisualStyleBackColor = true;
+            this.btnReady.Click += new System.EventHandler(this.button1_Click);
             // 
-            // trackBar1
+            // trackBarKillerDelay
             // 
-            this.trackBar1.LargeChange = 5000;
-            this.trackBar1.Location = new System.Drawing.Point(12, 70);
-            this.trackBar1.Maximum = 10000;
-            this.trackBar1.Minimum = 1000;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(207, 45);
-            this.trackBar1.SmallChange = 1000;
-            this.trackBar1.TabIndex = 13;
-            this.trackBar1.TickFrequency = 1000;
-            this.trackBar1.Value = 2000;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.trackBarKillerDelay.LargeChange = 100;
+            this.trackBarKillerDelay.Location = new System.Drawing.Point(37, 70);
+            this.trackBarKillerDelay.Maximum = 2000;
+            this.trackBarKillerDelay.Name = "trackBarKillerDelay";
+            this.trackBarKillerDelay.Size = new System.Drawing.Size(354, 45);
+            this.trackBarKillerDelay.SmallChange = 10;
+            this.trackBarKillerDelay.TabIndex = 15;
+            this.trackBarKillerDelay.TickFrequency = 1000;
+            this.trackBarKillerDelay.Scroll += new System.EventHandler(this.trackBarKillerDelay_Scroll);
             // 
-            // label1
+            // labelKillerDelay
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(135, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 29);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "2000 ms";
+            this.labelKillerDelay.AutoSize = true;
+            this.labelKillerDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelKillerDelay.Location = new System.Drawing.Point(44, 41);
+            this.labelKillerDelay.Name = "labelKillerDelay";
+            this.labelKillerDelay.Size = new System.Drawing.Size(87, 20);
+            this.labelKillerDelay.TabIndex = 17;
+            this.labelKillerDelay.Text = "Killer delay:";
             // 
-            // trackBar2
+            // labelKillerDelayMs
             // 
-            this.trackBar2.LargeChange = 100;
-            this.trackBar2.Location = new System.Drawing.Point(220, 70);
-            this.trackBar2.Maximum = 2000;
-            this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(207, 45);
-            this.trackBar2.SmallChange = 10;
-            this.trackBar2.TabIndex = 15;
-            this.trackBar2.TickFrequency = 1000;
-            this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(12, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 20);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "SoT ready delay:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(228, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 20);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "Killer delay:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(321, 41);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 24);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "0 ms";
+            this.labelKillerDelayMs.AutoSize = true;
+            this.labelKillerDelayMs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelKillerDelayMs.Location = new System.Drawing.Point(137, 41);
+            this.labelKillerDelayMs.Name = "labelKillerDelayMs";
+            this.labelKillerDelayMs.Size = new System.Drawing.Size(50, 24);
+            this.labelKillerDelayMs.TabIndex = 18;
+            this.labelKillerDelayMs.Text = "0 ms";
             // 
             // MainForm
             // 
@@ -267,10 +231,8 @@
             this.Controls.Add(this.btnChangePathSoT);
             this.Controls.Add(this.txtPathSoT);
             this.Controls.Add(this.lblPathSoT);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.trackBar1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.labelKillerDelay);
+            this.Controls.Add(this.btnReady);
             this.Controls.Add(this.txtHotkey);
             this.Controls.Add(this.lblHotkey);
             this.Controls.Add(this.cmbActiveGame);
@@ -280,17 +242,15 @@
             this.Controls.Add(this.txtPathT2T);
             this.Controls.Add(this.btnChangePathWW);
             this.Controls.Add(this.txtPathWW);
-            this.Controls.Add(this.trackBar2);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.trackBarKillerDelay);
+            this.Controls.Add(this.labelKillerDelayMs);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(800, 300);
             this.MinimumSize = new System.Drawing.Size(18, 168);
             this.Name = "MainForm";
             this.Text = "SandsTrilogyKiller";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarKillerDelay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -311,13 +271,10 @@
         private System.Windows.Forms.Label lblHotkey;
         private System.Windows.Forms.TextBox txtHotkey;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TrackBar trackBar2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnReady;
+        private System.Windows.Forms.TrackBar trackBarKillerDelay;
+        private System.Windows.Forms.Label labelKillerDelay;
+        private System.Windows.Forms.Label labelKillerDelayMs;
     }
 }
 

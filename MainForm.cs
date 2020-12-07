@@ -93,14 +93,15 @@ namespace SandsTrilogyKiller
                     try
                     {
                         Process.Start(princeOfPersiaFile);
-                        System.Threading.Thread.Sleep(trackBar1.Value);
-
+                        while (Process.GetProcessesByName("POP").Length == 0) ;
+                        System.Threading.Thread.Sleep(500);
                     } catch
                     {
                         MessageBox.Show("Could not start process \"" + hook.GameLauncherPath + "\"",
                                        "Error starting Process",
                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+
                     KeyboardHook.ForceCloseProcesses(Process.GetProcessesByName("POP"));
                 }
 
@@ -120,16 +121,10 @@ namespace SandsTrilogyKiller
             }
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void trackBarKillerDelay_Scroll(object sender, EventArgs e)
         {
-            label1.Text = trackBar1.Value.ToString() + " ms";
+            hook.killerSpeed = trackBarKillerDelay.Value;
+            labelKillerDelayMs.Text = trackBarKillerDelay.Value.ToString() + " ms";
         }
-
-        private void trackBar2_Scroll(object sender, EventArgs e)
-        {
-            hook.killerSpeed = trackBar2.Value;
-            label4.Text = trackBar2.Value.ToString() + " ms";
-        }
-
     }
 }
