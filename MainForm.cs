@@ -93,7 +93,10 @@ namespace SandsTrilogyKiller
                     try
                     {
                         Process.Start(princeOfPersiaFile);
-                        while (Process.GetProcessesByName("POP").Length == 0) ;
+                        while (Process.GetProcessesByName("POP").Length == 0)
+                        {
+                            System.Threading.Thread.Sleep(500);
+                        }
                         System.Threading.Thread.Sleep(500);
                     } catch
                     {
