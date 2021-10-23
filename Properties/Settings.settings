@@ -14,8 +14,23 @@
     <Setting Name="activeGame" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="hotkey" Type="System.Windows.Forms.Keys" Scope="User">
+    <Setting Name="hotkeySoT" Type="System.Windows.Forms.Keys" Scope="User">
       <Value Profile="(Default)">NumPad5</Value>
+    </Setting>
+    <Setting Name="hotkeyWW" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">NumPad6</Value>
+    </Setting>
+    <Setting Name="hotkeyT2T" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">NumPad7</Value>
+    </Setting>
+    <Setting Name="checkBoxSoT" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="checkBoxWW" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="checkBoxT2T" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

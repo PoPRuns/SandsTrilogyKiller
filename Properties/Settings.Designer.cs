@@ -12,7 +12,7 @@ namespace SandsTrilogyKiller.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.6.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -74,12 +74,72 @@ namespace SandsTrilogyKiller.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("NumPad5")]
-        public global::System.Windows.Forms.Keys hotkey {
+        public global::System.Windows.Forms.Keys hotkeySoT {
             get {
-                return ((global::System.Windows.Forms.Keys)(this["hotkey"]));
+                return ((global::System.Windows.Forms.Keys)(this["hotkeySoT"]));
             }
             set {
-                this["hotkey"] = value;
+                this["hotkeySoT"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("NumPad6")]
+        public global::System.Windows.Forms.Keys hotkeyWW {
+            get {
+                return ((global::System.Windows.Forms.Keys)(this["hotkeyWW"]));
+            }
+            set {
+                this["hotkeyWW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("NumPad7")]
+        public global::System.Windows.Forms.Keys hotkeyT2T {
+            get {
+                return ((global::System.Windows.Forms.Keys)(this["hotkeyT2T"]));
+            }
+            set {
+                this["hotkeyT2T"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkBoxSoT {
+            get {
+                return ((bool)(this["checkBoxSoT"]));
+            }
+            set {
+                this["checkBoxSoT"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkBoxWW {
+            get {
+                return ((bool)(this["checkBoxWW"]));
+            }
+            set {
+                this["checkBoxWW"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkBoxT2T {
+            get {
+                return ((bool)(this["checkBoxT2T"]));
+            }
+            set {
+                this["checkBoxT2T"] = value;
             }
         }
     }

@@ -7,27 +7,49 @@ namespace SandsTrilogyKiller
 {
     public partial class MainForm : Form
     {
-        private KeyboardHook hook = new KeyboardHook();
+        private KeyboardHook hookSoT = new KeyboardHook();
+        private KeyboardHook hookWW = new KeyboardHook();
+        private KeyboardHook hookT2T = new KeyboardHook();
 
         public MainForm()
         {
             InitializeComponent();
-            cmbActiveGame.SelectedIndex = Properties.Settings.Default.activeGame;
-            hook.Hotkey = Properties.Settings.Default.hotkey;
-            txtHotkey.Text = hook.Hotkey.ToString();
+
+            checkBoxSoT.Checked = Properties.Settings.Default.checkBoxSoT;
+            checkBoxWW.Checked  = Properties.Settings.Default.checkBoxWW;
+            checkBoxT2T.Checked = Properties.Settings.Default.checkBoxT2T;
+
+            hookSoT.Hotkey = Properties.Settings.Default.hotkeySoT;
+            hookWW.Hotkey  = Properties.Settings.Default.hotkeyWW;
+            hookT2T.Hotkey = Properties.Settings.Default.hotkeyT2T;
+
+            hookSoT.GameLauncherPath = txtPathSoT.Text;
+            hookWW.GameLauncherPath  = txtPathWW.Text;
+            hookT2T.GameLauncherPath = txtPathT2T.Text;
+
+            txtHotkeySoT.Text = hookSoT.Hotkey.ToString();
+            txtHotkeyWW.Text  = hookWW.Hotkey.ToString();
+            txtHotkeyT2T.Text = hookT2T.Hotkey.ToString();
+
             txtPathSoT.Text = Properties.Settings.Default.pathSoT;
-            txtPathWW.Text = Properties.Settings.Default.pathWW;
+            txtPathWW.Text  = Properties.Settings.Default.pathWW;
             txtPathT2T.Text = Properties.Settings.Default.pathT2T;
-            SetGameLauncherPath();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Properties.Settings.Default.activeGame = cmbActiveGame.SelectedIndex;
-            Properties.Settings.Default.hotkey = hook.Hotkey;
+            Properties.Settings.Default.checkBoxSoT = checkBoxSoT.Checked;
+            Properties.Settings.Default.checkBoxWW  = checkBoxWW.Checked;
+            Properties.Settings.Default.checkBoxT2T = checkBoxT2T.Checked;
+
+            Properties.Settings.Default.hotkeySoT = hookSoT.Hotkey;
+            Properties.Settings.Default.hotkeyWW  = hookWW.Hotkey;
+            Properties.Settings.Default.hotkeyT2T = hookT2T.Hotkey;
+
             Properties.Settings.Default.pathSoT = txtPathSoT.Text;
-            Properties.Settings.Default.pathWW = txtPathWW.Text;
+            Properties.Settings.Default.pathWW  = txtPathWW.Text;
             Properties.Settings.Default.pathT2T = txtPathT2T.Text;
+
             Properties.Settings.Default.Save();
         }
 
@@ -55,36 +77,70 @@ namespace SandsTrilogyKiller
             OpenFileDialog(txtPathT2T);
         }
 
-        private void TxtHotkey_KeyDown(object sender, KeyEventArgs e)
+        private void TrackBarKillerDelay_Scroll(object sender, EventArgs e)
         {
-            hook.Hotkey = e.KeyCode;
-            txtHotkey.Text = hook.Hotkey.ToString();
+            hookSoT.killerSpeed = trackBarKillerDelay.Value;
+            hookWW.killerSpeed  = trackBarKillerDelay.Value;
+            hookT2T.killerSpeed = trackBarKillerDelay.Value;
+
+            labelKillerDelayMs.Text = trackBarKillerDelay.Value.ToString() + " ms";
         }
 
-        private void CurrentGameLauncherPathChanged(object sender, EventArgs e)
+        private void ButtonReady_Click(object sender, MouseEventArgs e)
         {
-            SetGameLauncherPath();
-        }
-
-        void SetGameLauncherPath()
-        {
-            switch (cmbActiveGame.SelectedIndex)
+            if(checkBoxSoT.Checked)
             {
-                case 0:
-                    hook.GameLauncherPath = txtPathSoT.Text;
-                    break;
-                case 1:
-                    hook.GameLauncherPath = txtPathWW.Text;
-                    break;
-                case 2:
-                    hook.GameLauncherPath = txtPathT2T.Text;
-                    break;
+                readyPOPGame(hookSoT);
+            }
+            if(checkBoxWW.Checked)
+            {
+                readyPOPGame(hookWW);
+            }
+            if(checkBoxT2T.Checked)
+            {
+                readyPOPGame(hookT2T);
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+       
+        private void TxtPathSoT_TextChanged(object sender, EventArgs e)
         {
-            
+            hookSoT.GameLauncherPath = txtPathSoT.Text;
+            txtPathSoT.SelectionStart = txtPathSoT.Text.Length - 1;
+        }
+
+        private void TxtPathWW_TextChanged(object sender, EventArgs e)
+        {
+            hookWW.GameLauncherPath = txtPathWW.Text;
+            txtPathWW.SelectionStart = txtPathWW.Text.Length - 1;
+        }
+
+        private void TxtPathT2T_TextChanged(object sender, EventArgs e)
+        {
+            hookT2T.GameLauncherPath = txtPathT2T.Text;
+            txtPathT2T.SelectionStart = txtPathT2T.Text.Length - 1;
+        }
+
+        private void TxtHotkeySoT_KeyUp(object sender, KeyEventArgs e)
+        {
+            hookSoT.Hotkey = e.KeyCode;
+            txtHotkeySoT.Text = hookSoT.Hotkey.ToString();
+        }
+
+        private void TxtHotkeyWW_KeyUp(object sender, KeyEventArgs e)
+        {
+            hookWW.Hotkey = e.KeyCode;
+            txtHotkeyWW.Text = hookWW.Hotkey.ToString();
+        }
+
+        private void TxtHotkeyT2T_KeyUp(object sender, KeyEventArgs e)
+        {
+            hookT2T.Hotkey = e.KeyCode;
+            txtHotkeyT2T.Text = hookT2T.Hotkey.ToString();
+        }
+
+        private void readyPOPGame(KeyboardHook hook)
+        {
+            Console.Out.WriteLine(hook.GameLauncherPath);
             if (hook.GameLauncherPath == txtPathSoT.Text)
             {
                 String princeOfPersiaFile = hook.GameLauncherPath.Substring(0, hook.GameLauncherPath.Length - 7) + "PrinceOfPersia.EXE";
@@ -113,6 +169,7 @@ namespace SandsTrilogyKiller
                 String princeOfPersiaFile = hook.GameLauncherPath.Substring(0, hook.GameLauncherPath.Length - 8) + "PrinceOfPersia.EXE";
                 try
                 {
+                    Console.Out.WriteLine(princeOfPersiaFile);
                     Process.Start(princeOfPersiaFile);
                 }
                 catch
@@ -122,12 +179,6 @@ namespace SandsTrilogyKiller
                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
-        private void trackBarKillerDelay_Scroll(object sender, EventArgs e)
-        {
-            hook.killerSpeed = trackBarKillerDelay.Value;
-            labelKillerDelayMs.Text = trackBarKillerDelay.Value.ToString() + " ms";
         }
     }
 }
