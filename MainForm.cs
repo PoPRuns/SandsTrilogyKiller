@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace SandsTrilogyKiller
 {
@@ -11,9 +12,12 @@ namespace SandsTrilogyKiller
         private KeyboardHook hookWW = new KeyboardHook();
         private KeyboardHook hookT2T = new KeyboardHook();
 
+        private const int SOT_PROCESS_READY_WAIT_TIME = 4000; // ms
+
         public MainForm()
         {
             InitializeComponent();
+            this.ActiveControl = buttonReady;
 
             checkBoxSoT.Checked = Properties.Settings.Default.checkBoxSoT;
             checkBoxWW.Checked  = Properties.Settings.Default.checkBoxWW;
@@ -138,30 +142,34 @@ namespace SandsTrilogyKiller
             txtHotkeyT2T.Text = hookT2T.Hotkey.ToString();
         }
 
+        public void startSoTProcess(String princeOfPersiaFile)
+        {
+            int msElapsed = 0;
+            try
+            {
+                Process.Start(princeOfPersiaFile);
+                while (Process.GetProcessesByName("POP").Length == 0 && msElapsed < SOT_PROCESS_READY_WAIT_TIME)
+                {
+                    Thread.Sleep(500);
+                    msElapsed += 500;
+                }
+                Thread.Sleep(500);
+
+                KeyboardHook.ForceCloseProcesses(Process.GetProcessesByName("POP"));
+            } catch
+            {
+            }
+        }
+
         private void readyPOPGame(KeyboardHook hook)
         {
-            Console.Out.WriteLine(hook.GameLauncherPath);
             if (hook.GameLauncherPath == txtPathSoT.Text)
             {
                 String princeOfPersiaFile = hook.GameLauncherPath.Substring(0, hook.GameLauncherPath.Length - 7) + "PrinceOfPersia.EXE";
                 if (File.Exists(princeOfPersiaFile))
                 {
-                    try
-                    {
-                        Process.Start(princeOfPersiaFile);
-                        while (Process.GetProcessesByName("POP").Length == 0)
-                        {
-                            System.Threading.Thread.Sleep(500);
-                        }
-                        System.Threading.Thread.Sleep(500);
-                    } catch
-                    {
-                        MessageBox.Show("Could not start process \"" + hook.GameLauncherPath + "\"",
-                                       "Error starting Process",
-                                       MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                    KeyboardHook.ForceCloseProcesses(Process.GetProcessesByName("POP"));
+                    // we create new thread so we don't freeze our UI while waiting for process to start.
+                    new Thread(() => startSoTProcess(princeOfPersiaFile)).Start();
                 }
 
             } else if(hook.GameLauncherPath == txtPathWW.Text || hook.GameLauncherPath == txtPathT2T.Text)
@@ -169,7 +177,6 @@ namespace SandsTrilogyKiller
                 String princeOfPersiaFile = hook.GameLauncherPath.Substring(0, hook.GameLauncherPath.Length - 8) + "PrinceOfPersia.EXE";
                 try
                 {
-                    Console.Out.WriteLine(princeOfPersiaFile);
                     Process.Start(princeOfPersiaFile);
                 }
                 catch
