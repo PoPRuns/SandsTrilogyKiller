@@ -128,18 +128,21 @@ namespace SandsTrilogyKiller
         {
             hookSoT.Hotkey = e.KeyCode;
             txtHotkeySoT.Text = hookSoT.Hotkey.ToString();
+            this.ActiveControl = buttonReady;
         }
 
         private void TxtHotkeyWW_KeyUp(object sender, KeyEventArgs e)
         {
             hookWW.Hotkey = e.KeyCode;
             txtHotkeyWW.Text = hookWW.Hotkey.ToString();
+            this.ActiveControl = buttonReady;
         }
 
         private void TxtHotkeyT2T_KeyUp(object sender, KeyEventArgs e)
         {
             hookT2T.Hotkey = e.KeyCode;
             txtHotkeyT2T.Text = hookT2T.Hotkey.ToString();
+            this.ActiveControl = buttonReady;
         }
 
         public void startSoTProcess(String princeOfPersiaFile)
