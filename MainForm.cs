@@ -19,6 +19,7 @@ namespace SandsTrilogyKiller
             txtPathWW.Text = Properties.Settings.Default.pathWW;
             txtPathT2T.Text = Properties.Settings.Default.pathT2T;
             SetGameLauncherPath();
+            hook.PriorityAffinity = checkBox1.Checked;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -128,6 +129,11 @@ namespace SandsTrilogyKiller
         {
             hook.killerSpeed = trackBarKillerDelay.Value;
             labelKillerDelayMs.Text = trackBarKillerDelay.Value.ToString() + " ms";
+        }
+
+        private void checkBox1_CheckStateChanged(object sender, EventArgs e)
+        {
+            hook.PriorityAffinity = checkBox1.Checked;
         }
     }
 }

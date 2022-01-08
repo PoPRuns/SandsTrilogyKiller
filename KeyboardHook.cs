@@ -15,6 +15,7 @@ namespace SandsTrilogyKiller
         public int killerSpeed = 0;
         public string GameLauncherPath { get; set; }
         public Keys Hotkey { get; set; }
+        public bool PriorityAffinity { get; set; }
 
         public KeyboardHook()
         {
@@ -40,7 +41,12 @@ namespace SandsTrilogyKiller
                     try
                     {
                         System.Threading.Thread.Sleep(killerSpeed);
-                        Process.Start(GameLauncherPath);
+                        Process proc = Process.Start(GameLauncherPath);
+                        if (PriorityAffinity)
+                        {
+                            proc.ProcessorAffinity = (System.IntPtr)0x08;
+                            proc.PriorityClass = ProcessPriorityClass.RealTime;
+                        }
                     }
                     catch
                     {

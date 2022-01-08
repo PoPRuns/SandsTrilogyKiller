@@ -1,6 +1,6 @@
 ﻿namespace SandsTrilogyKiller
 {
-    partial class MainForm
+    public partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -45,6 +45,7 @@
             this.trackBarKillerDelay = new System.Windows.Forms.TrackBar();
             this.labelKillerDelay = new System.Windows.Forms.Label();
             this.labelKillerDelayMs = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarKillerDelay)).BeginInit();
             this.SuspendLayout();
             // 
@@ -223,11 +224,25 @@
             this.labelKillerDelayMs.TabIndex = 18;
             this.labelKillerDelayMs.Text = "0 ms";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(301, 41);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(131, 17);
+            this.checkBox1.TabIndex = 19;
+            this.checkBox1.Text = "Set Priority and Affinity";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckStateChanged += new System.EventHandler(this.checkBox1_CheckStateChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(439, 188);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnChangePathSoT);
             this.Controls.Add(this.txtPathSoT);
             this.Controls.Add(this.lblPathSoT);
@@ -275,6 +290,7 @@
         private System.Windows.Forms.TrackBar trackBarKillerDelay;
         private System.Windows.Forms.Label labelKillerDelay;
         private System.Windows.Forms.Label labelKillerDelayMs;
+        public System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
