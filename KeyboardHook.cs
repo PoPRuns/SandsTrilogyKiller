@@ -44,7 +44,7 @@ namespace SandsTrilogyKiller
                         Process proc = Process.Start(GameLauncherPath);
                         if (PriorityAffinity)
                         {
-                            proc.ProcessorAffinity = (System.IntPtr)0x08;
+                            proc.ProcessorAffinity = (System.IntPtr)0x01;
                             proc.PriorityClass = ProcessPriorityClass.RealTime;
                         }
                     }
