@@ -19,6 +19,18 @@ namespace SandsTrilogyKiller
             txtPathWW.Text = Properties.Settings.Default.pathWW;
             txtPathT2T.Text = Properties.Settings.Default.pathT2T;
             SetGameLauncherPath();
+
+            int coreCount = Environment.ProcessorCount;
+            int i = 0;
+            while (i < coreCount)
+            {
+                affinityComboBox.Items.Add("CPU " + i.ToString());
+                i++;
+            }
+            priorityComboBox.SelectedIndex = 1;
+            affinityComboBox.SelectedIndex = 0;
+            hook.Priority = ProcessPriorityClass.High;
+            hook.Affinity = (System.IntPtr)0x01;
             hook.PriorityAffinity = cboxPriorityAffinity.Checked;
         }
 
@@ -91,6 +103,13 @@ namespace SandsTrilogyKiller
                 String princeOfPersiaFile = hook.GameLauncherPath.Substring(0, hook.GameLauncherPath.Length - 7) + "PrinceOfPersia.EXE";
                 if (File.Exists(princeOfPersiaFile))
                 {
+                    if (Process.GetProcessesByName("PrinceOfPersia").Length > 0)
+                    {
+                        foreach (var process in Process.GetProcessesByName("PrinceOfPersia"))
+                        {
+                            process.Kill();
+                        }
+                    }
                     try
                     {
                         Process.Start(princeOfPersiaFile);
@@ -134,6 +153,25 @@ namespace SandsTrilogyKiller
         private void cboxPriorityAffinity_CheckStateChanged(object sender, EventArgs e)
         {
             hook.PriorityAffinity = cboxPriorityAffinity.Checked;
+        }
+
+        private void priorityComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (priorityComboBox.SelectedIndex)
+            {
+                case 0: hook.Priority = ProcessPriorityClass.RealTime; break;
+                case 1: hook.Priority = ProcessPriorityClass.High; break;
+                case 2: hook.Priority = ProcessPriorityClass.AboveNormal; break;
+                case 3: hook.Priority = ProcessPriorityClass.Normal; break;
+                case 4: hook.Priority = ProcessPriorityClass.BelowNormal; break;
+                case 5: hook.Priority = ProcessPriorityClass.Idle; break;
+                default: break;
+            }
+        }
+
+        private void affinityComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            hook.Affinity = (System.IntPtr)Math.Pow(2, affinityComboBox.SelectedIndex);
         }
     }
 }

@@ -17,6 +17,10 @@ namespace SandsTrilogyKiller
         public Keys Hotkey { get; set; }
         public bool PriorityAffinity { get; set; }
 
+        public ProcessPriorityClass Priority { get; set; }
+
+        public System.IntPtr Affinity { get; set; }
+
         public KeyboardHook()
         {
             proc = HookCallback;
@@ -44,8 +48,8 @@ namespace SandsTrilogyKiller
                         Process proc = Process.Start(GameLauncherPath);
                         if (PriorityAffinity)
                         {
-                            proc.ProcessorAffinity = (System.IntPtr)0x01;
-                            proc.PriorityClass = ProcessPriorityClass.RealTime;
+                            proc.ProcessorAffinity = Affinity;
+                            proc.PriorityClass = Priority;
                         }
                     }
                     catch

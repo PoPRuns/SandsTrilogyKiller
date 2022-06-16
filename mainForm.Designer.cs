@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtPathSoT = new System.Windows.Forms.TextBox();
             this.txtPathWW = new System.Windows.Forms.TextBox();
             this.btnChangePathSoT = new System.Windows.Forms.Button();
@@ -46,7 +47,13 @@
             this.labelKillerDelay = new System.Windows.Forms.Label();
             this.labelKillerDelayMs = new System.Windows.Forms.Label();
             this.cboxPriorityAffinity = new System.Windows.Forms.CheckBox();
+            this.contextMenuPriorityAffinity = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.priorityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.priorityComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.affinityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.affinityComboBox = new System.Windows.Forms.ToolStripComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarKillerDelay)).BeginInit();
+            this.contextMenuPriorityAffinity.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtPathSoT
@@ -188,7 +195,7 @@
             this.btnReady.Name = "btnReady";
             this.btnReady.Size = new System.Drawing.Size(79, 29);
             this.btnReady.TabIndex = 12;
-            this.btnReady.Text = "ready";
+            this.btnReady.Text = "Ready";
             this.btnReady.UseVisualStyleBackColor = true;
             this.btnReady.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -227,8 +234,7 @@
             // cboxPriorityAffinity
             // 
             this.cboxPriorityAffinity.AutoSize = true;
-            this.cboxPriorityAffinity.Checked = true;
-            this.cboxPriorityAffinity.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxPriorityAffinity.ContextMenuStrip = this.contextMenuPriorityAffinity;
             this.cboxPriorityAffinity.Location = new System.Drawing.Point(301, 41);
             this.cboxPriorityAffinity.Name = "cboxPriorityAffinity";
             this.cboxPriorityAffinity.Size = new System.Drawing.Size(131, 17);
@@ -236,6 +242,49 @@
             this.cboxPriorityAffinity.Text = "Set Priority and Affinity";
             this.cboxPriorityAffinity.UseVisualStyleBackColor = true;
             this.cboxPriorityAffinity.CheckStateChanged += new System.EventHandler(this.cboxPriorityAffinity_CheckStateChanged);
+            // 
+            // contextMenuPriorityAffinity
+            // 
+            this.contextMenuPriorityAffinity.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.priorityToolStripMenuItem,
+            this.affinityToolStripMenuItem});
+            this.contextMenuPriorityAffinity.Name = "contextMenuStrip1";
+            this.contextMenuPriorityAffinity.Size = new System.Drawing.Size(181, 70);
+            // 
+            // priorityToolStripMenuItem
+            // 
+            this.priorityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.priorityComboBox});
+            this.priorityToolStripMenuItem.Name = "priorityToolStripMenuItem";
+            this.priorityToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.priorityToolStripMenuItem.Text = "Priority";
+            // 
+            // priorityComboBox
+            // 
+            this.priorityComboBox.Items.AddRange(new object[] {
+            "Realtime",
+            "High",
+            "Above normal",
+            "Normal",
+            "Below normal",
+            "Low"});
+            this.priorityComboBox.Name = "priorityComboBox";
+            this.priorityComboBox.Size = new System.Drawing.Size(121, 23);
+            this.priorityComboBox.SelectedIndexChanged += new System.EventHandler(this.priorityComboBox_SelectedIndexChanged);
+            // 
+            // affinityToolStripMenuItem
+            // 
+            this.affinityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.affinityComboBox});
+            this.affinityToolStripMenuItem.Name = "affinityToolStripMenuItem";
+            this.affinityToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.affinityToolStripMenuItem.Text = "Affinity";
+            // 
+            // affinityComboBox
+            // 
+            this.affinityComboBox.Name = "affinityComboBox";
+            this.affinityComboBox.Size = new System.Drawing.Size(121, 23);
+            this.affinityComboBox.SelectedIndexChanged += new System.EventHandler(this.affinityComboBox_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -266,6 +315,7 @@
             this.Text = "SandsTrilogyKiller";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarKillerDelay)).EndInit();
+            this.contextMenuPriorityAffinity.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,6 +341,11 @@
         private System.Windows.Forms.Label labelKillerDelay;
         private System.Windows.Forms.Label labelKillerDelayMs;
         public System.Windows.Forms.CheckBox cboxPriorityAffinity;
+        private System.Windows.Forms.ContextMenuStrip contextMenuPriorityAffinity;
+        private System.Windows.Forms.ToolStripMenuItem priorityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem affinityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox affinityComboBox;
+        private System.Windows.Forms.ToolStripComboBox priorityComboBox;
     }
 }
 
