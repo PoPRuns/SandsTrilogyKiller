@@ -17,5 +17,11 @@
     <Setting Name="hotkey" Type="System.Windows.Forms.Keys" Scope="User">
       <Value Profile="(Default)">NumPad5</Value>
     </Setting>
+    <Setting Name="priority" Type="System.Diagnostics.ProcessPriorityClass" Scope="User">
+      <Value Profile="(Default)">High</Value>
+    </Setting>
+    <Setting Name="affinity" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
