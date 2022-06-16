@@ -21,16 +21,20 @@ namespace SandsTrilogyKiller
             SetGameLauncherPath();
 
             int coreCount = Environment.ProcessorCount;
-            int i = 0;
-            while (i < coreCount)
+            for (int i = 0;  i < coreCount; i++) affinityComboBox.Items.Add("CPU " + i.ToString());
+            hook.Priority = Properties.Settings.Default.priority;
+            hook.Affinity = (System.IntPtr)Properties.Settings.Default.affinity;
+            switch (Properties.Settings.Default.priority)
             {
-                affinityComboBox.Items.Add("CPU " + i.ToString());
-                i++;
+                case ProcessPriorityClass.RealTime      : priorityComboBox.SelectedIndex = 0; break;
+                case ProcessPriorityClass.High          : priorityComboBox.SelectedIndex = 1; break;
+                case ProcessPriorityClass.AboveNormal   : priorityComboBox.SelectedIndex = 2; break;
+                case ProcessPriorityClass.Normal        : priorityComboBox.SelectedIndex = 3; break;
+                case ProcessPriorityClass.BelowNormal   : priorityComboBox.SelectedIndex = 4; break;
+                case ProcessPriorityClass.Idle          : priorityComboBox.SelectedIndex = 5; break;
+                default                                 : break;
             }
-            priorityComboBox.SelectedIndex = 1;
-            affinityComboBox.SelectedIndex = 0;
-            hook.Priority = ProcessPriorityClass.High;
-            hook.Affinity = (System.IntPtr)0x01;
+            affinityComboBox.SelectedIndex = (int)Math.Log(Properties.Settings.Default.affinity, 2);
             hook.PriorityAffinity = cboxPriorityAffinity.Checked;
         }
 
@@ -41,6 +45,8 @@ namespace SandsTrilogyKiller
             Properties.Settings.Default.pathSoT = txtPathSoT.Text;
             Properties.Settings.Default.pathWW = txtPathWW.Text;
             Properties.Settings.Default.pathT2T = txtPathT2T.Text;
+            Properties.Settings.Default.priority = hook.Priority;
+            Properties.Settings.Default.affinity = (int)hook.Affinity;
             Properties.Settings.Default.Save();
         }
 
@@ -95,7 +101,7 @@ namespace SandsTrilogyKiller
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnReady_Click(object sender, EventArgs e)
         {
             
             if (hook.GameLauncherPath == txtPathSoT.Text)

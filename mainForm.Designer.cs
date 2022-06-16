@@ -52,6 +52,7 @@
             this.priorityComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.affinityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.affinityComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarKillerDelay)).BeginInit();
             this.contextMenuPriorityAffinity.SuspendLayout();
             this.SuspendLayout();
@@ -197,7 +198,7 @@
             this.btnReady.TabIndex = 12;
             this.btnReady.Text = "Ready";
             this.btnReady.UseVisualStyleBackColor = true;
-            this.btnReady.Click += new System.EventHandler(this.button1_Click);
+            this.btnReady.Click += new System.EventHandler(this.btnReady_Click);
             // 
             // trackBarKillerDelay
             // 
@@ -240,6 +241,7 @@
             this.cboxPriorityAffinity.Size = new System.Drawing.Size(131, 17);
             this.cboxPriorityAffinity.TabIndex = 19;
             this.cboxPriorityAffinity.Text = "Set Priority and Affinity";
+            this.toolTip1.SetToolTip(this.cboxPriorityAffinity, "Set custom priority and affinity while launching. Right click for more options.");
             this.cboxPriorityAffinity.UseVisualStyleBackColor = true;
             this.cboxPriorityAffinity.CheckStateChanged += new System.EventHandler(this.cboxPriorityAffinity_CheckStateChanged);
             // 
@@ -249,7 +251,7 @@
             this.priorityToolStripMenuItem,
             this.affinityToolStripMenuItem});
             this.contextMenuPriorityAffinity.Name = "contextMenuStrip1";
-            this.contextMenuPriorityAffinity.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuPriorityAffinity.Size = new System.Drawing.Size(114, 48);
             // 
             // priorityToolStripMenuItem
             // 
@@ -277,7 +279,7 @@
             this.affinityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.affinityComboBox});
             this.affinityToolStripMenuItem.Name = "affinityToolStripMenuItem";
-            this.affinityToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.affinityToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.affinityToolStripMenuItem.Text = "Affinity";
             // 
             // affinityComboBox
@@ -346,6 +348,7 @@
         private System.Windows.Forms.ToolStripMenuItem affinityToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox affinityComboBox;
         private System.Windows.Forms.ToolStripComboBox priorityComboBox;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
