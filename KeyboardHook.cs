@@ -16,6 +16,7 @@ namespace SandsTrilogyKiller
         public string GameLauncherPath { get; set; }
         public Keys Hotkey { get; set; }
         public bool PriorityAffinity { get; set; }
+        public bool HotkeyTextBoxOnFocus = false;
 
         public ProcessPriorityClass Priority { get; set; }
 
@@ -37,11 +38,16 @@ namespace SandsTrilogyKiller
             if (nCode >= 0 && wParam == (IntPtr)WM_KEYUP)
             {
                 Keys vkCode = (Keys)Marshal.ReadInt32(lParam);
-                if (vkCode == Hotkey)
+                if (vkCode == Hotkey && !HotkeyTextBoxOnFocus)
                 {
                     CloseProcesses(Process.GetProcessesByName("POP"));
                     CloseProcesses(Process.GetProcessesByName("POP2"));
                     CloseProcesses(Process.GetProcessesByName("POP3"));
+
+                    CreateOrGetMutex("POP_Launcher");
+                    CreateOrGetMutex("POP5Launcher");
+                    CreateOrGetMutex("POP3Launcher");
+
                     try
                     {
                         System.Threading.Thread.Sleep(killerSpeed);
@@ -59,9 +65,25 @@ namespace SandsTrilogyKiller
                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                else if (HotkeyTextBoxOnFocus)
+                {
+                    HotkeyTextBoxOnFocus = false;
+                }
             }
 
             return CallNextHookEx(hookId, nCode, wParam, lParam);
+        }
+
+        public static void CreateOrGetMutex(string mutexName)
+        {
+            try
+            {
+                System.Threading.Mutex fakeMutex = System.Threading.Mutex.OpenExisting(mutexName);
+            }
+            catch
+            {
+                System.Threading.Mutex fakeMutex = new System.Threading.Mutex(false, mutexName);
+            }
         }
 
         public static void CloseProcesses(Process[] processes)

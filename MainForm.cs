@@ -76,13 +76,21 @@ namespace SandsTrilogyKiller
 
         private void TxtHotkey_KeyDown(object sender, KeyEventArgs e)
         {
+            hook.HotkeyTextBoxOnFocus = true;
             hook.Hotkey = e.KeyCode;
             txtHotkey.Text = hook.Hotkey.ToString();
+            this.ActiveControl = null;
         }
 
         private void CurrentGameLauncherPathChanged(object sender, EventArgs e)
         {
             SetGameLauncherPath();
+            TextBox tb = sender as TextBox;
+            if (tb != null)
+            {
+                tb.SelectionStart = tb.Text.Length;
+                tb.ScrollToCaret();
+            }
         }
 
         void SetGameLauncherPath()
