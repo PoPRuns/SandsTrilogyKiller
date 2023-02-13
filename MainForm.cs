@@ -83,6 +83,12 @@ namespace SandsTrilogyKiller
         private void CurrentGameLauncherPathChanged(object sender, EventArgs e)
         {
             SetGameLauncherPath();
+            TextBox tb = sender as TextBox;
+            if (tb != null)
+            {
+                tb.SelectionStart = tb.Text.Length;
+                tb.ScrollToCaret();
+            }
         }
 
         void SetGameLauncherPath()
