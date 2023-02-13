@@ -16,6 +16,7 @@ namespace SandsTrilogyKiller
         public string GameLauncherPath { get; set; }
         public Keys Hotkey { get; set; }
         public bool PriorityAffinity { get; set; }
+        public bool HotkeyTextBoxOnFocus = false;
 
         public ProcessPriorityClass Priority { get; set; }
 
@@ -37,7 +38,7 @@ namespace SandsTrilogyKiller
             if (nCode >= 0 && wParam == (IntPtr)WM_KEYUP)
             {
                 Keys vkCode = (Keys)Marshal.ReadInt32(lParam);
-                if (vkCode == Hotkey)
+                if (vkCode == Hotkey && !HotkeyTextBoxOnFocus)
                 {
                     CloseProcesses(Process.GetProcessesByName("POP"));
                     CloseProcesses(Process.GetProcessesByName("POP2"));
@@ -58,6 +59,10 @@ namespace SandsTrilogyKiller
                                         "Error starting Process",
                                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                }
+                else if (HotkeyTextBoxOnFocus)
+                {
+                    HotkeyTextBoxOnFocus = false;
                 }
             }
 
