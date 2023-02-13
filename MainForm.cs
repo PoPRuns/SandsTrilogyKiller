@@ -78,6 +78,8 @@ namespace SandsTrilogyKiller
         {
             hook.Hotkey = e.KeyCode;
             txtHotkey.Text = hook.Hotkey.ToString();
+            hook.HotkeyTextBoxOnFocus = true;
+            this.ActiveControl = null;
         }
 
         private void CurrentGameLauncherPathChanged(object sender, EventArgs e)
