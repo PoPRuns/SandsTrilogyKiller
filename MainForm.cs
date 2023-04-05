@@ -99,62 +99,16 @@ namespace SandsTrilogyKiller
             {
                 case 0:
                     hook.GameLauncherPath = txtPathSoT.Text;
+                    hook.SelectedGame = "SoT";
                     break;
                 case 1:
                     hook.GameLauncherPath = txtPathWW.Text;
+                    hook.SelectedGame = "WW";
                     break;
                 case 2:
                     hook.GameLauncherPath = txtPathT2T.Text;
+                    hook.SelectedGame = "T2T";
                     break;
-            }
-        }
-
-        private void btnReady_Click(object sender, EventArgs e)
-        {
-            
-            if (hook.GameLauncherPath == txtPathSoT.Text)
-            {
-                String princeOfPersiaFile = hook.GameLauncherPath.Substring(0, hook.GameLauncherPath.Length - 7) + "PrinceOfPersia.EXE";
-                if (File.Exists(princeOfPersiaFile))
-                {
-                    if (Process.GetProcessesByName("PrinceOfPersia").Length > 0)
-                    {
-                        foreach (var process in Process.GetProcessesByName("PrinceOfPersia"))
-                        {
-                            process.Kill();
-                        }
-                    }
-                    try
-                    {
-                        Process.Start(princeOfPersiaFile);
-                        while (Process.GetProcessesByName("POP").Length == 0)
-                        {
-                            System.Threading.Thread.Sleep(500);
-                        }
-                        System.Threading.Thread.Sleep(500);
-                    } catch
-                    {
-                        MessageBox.Show("Could not start process \"" + hook.GameLauncherPath + "\"",
-                                       "Error starting Process",
-                                       MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                    KeyboardHook.ForceCloseProcesses(Process.GetProcessesByName("POP"));
-                }
-
-            } else if(hook.GameLauncherPath == txtPathWW.Text || hook.GameLauncherPath == txtPathT2T.Text)
-            {
-                String princeOfPersiaFile = hook.GameLauncherPath.Substring(0, hook.GameLauncherPath.Length - 8) + "PrinceOfPersia.EXE";
-                try
-                {
-                    Process.Start(princeOfPersiaFile);
-                }
-                catch
-                {
-                    MessageBox.Show("Could not start process \"" + hook.GameLauncherPath + "\"",
-                                   "Error starting Process",
-                                   MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
         }
 
@@ -186,6 +140,11 @@ namespace SandsTrilogyKiller
         private void affinityComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             hook.Affinity = (System.IntPtr)Math.Pow(2, affinityComboBox.SelectedIndex);
+        }
+
+        private void cboxSteam_CheckStateChanged(object sender, EventArgs e)
+        {
+            hook.SteamLaunch = cboxSteam.Checked;
         }
     }
 }
