@@ -18,6 +18,7 @@ namespace SandsTrilogyKiller
             txtPathSoT.Text = Properties.Settings.Default.pathSoT;
             txtPathWW.Text = Properties.Settings.Default.pathWW;
             txtPathT2T.Text = Properties.Settings.Default.pathT2T;
+            cboxSteam.Checked = Properties.Settings.Default.steam;
             SetGameLauncherPath();
 
             int coreCount = Environment.ProcessorCount;
@@ -47,6 +48,7 @@ namespace SandsTrilogyKiller
             Properties.Settings.Default.pathT2T = txtPathT2T.Text;
             Properties.Settings.Default.priority = hook.Priority;
             Properties.Settings.Default.affinity = (int)hook.Affinity;
+            Properties.Settings.Default.steam = cboxSteam.Checked;
             Properties.Settings.Default.Save();
         }
 
