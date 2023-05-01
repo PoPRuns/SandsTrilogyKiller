@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -11,13 +13,38 @@ namespace SandsTrilogyKiller
         private const int WM_KEYUP = 0x0101;
         private readonly LowLevelKeyboardProc proc;
         private readonly IntPtr hookId;
+        private static readonly Dictionary<string, Dictionary<string, string>> GameData = new Dictionary<string, Dictionary<string, string>>
+        {
+            {
+                "SoT", new Dictionary<string, string>
+                {
+                    {"SteamID", "13600"},
+                    {"MutexName", "POP_Launcher"}
+                }
+            },
+            {
+                "WW", new Dictionary<string, string>
+                {
+                    {"SteamID", "13500"},
+                    {"MutexName", "POP5Launcher"}
+                }
+            },
+            {
+                "T2T", new Dictionary<string, string>
+                {
+                    {"SteamID", "13530"},
+                    {"MutexName", "POP3Launcher"}
+                }
+            }
+        };
 
         public int killerSpeed = 0;
         public string GameLauncherPath { get; set; }
+        public string SelectedGame { get; set; }
         public Keys Hotkey { get; set; }
         public bool PriorityAffinity { get; set; }
         public bool HotkeyTextBoxOnFocus = false;
-
+        public bool SteamLaunch { get; set; }
         public ProcessPriorityClass Priority { get; set; }
 
         public System.IntPtr Affinity { get; set; }
@@ -43,21 +70,39 @@ namespace SandsTrilogyKiller
                     CloseProcesses(Process.GetProcessesByName("POP"));
                     CloseProcesses(Process.GetProcessesByName("POP2"));
                     CloseProcesses(Process.GetProcessesByName("POP3"));
-                    try
+                    if (SteamLaunch)
                     {
-                        System.Threading.Thread.Sleep(killerSpeed);
-                        Process proc = Process.Start(GameLauncherPath);
-                        if (PriorityAffinity)
+                        ForceCloseProcesses(Process.GetProcessesByName("PrinceOfPersia"));
+                        try
                         {
-                            proc.ProcessorAffinity = Affinity;
-                            proc.PriorityClass = Priority;
+                            Process.Start($"steam://run/{GameData[SelectedGame]["SteamID"]}");
+                        }
+                        catch
+                        {
+                            MessageBox.Show($"Could not start steam://run/{GameData[SelectedGame]["SteamID"]}",
+                                            "Error staring Steam",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    catch
+                    else
                     {
-                        MessageBox.Show("Could not start process \"" + GameLauncherPath + "\"",
-                                        "Error starting Process",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        try
+                        {
+                            System.Threading.Thread.Sleep(killerSpeed);
+                            CreateOrGetMutex(GameData[SelectedGame]["MutexName"]);
+                            Process proc = Process.Start(GameLauncherPath);
+                            if (PriorityAffinity)
+                            {
+                                proc.ProcessorAffinity = Affinity;
+                                proc.PriorityClass = Priority;
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show($"Could not start process \"{GameLauncherPath}\"",
+                                            "Error starting Process",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
                 else if (HotkeyTextBoxOnFocus)
@@ -84,6 +129,14 @@ namespace SandsTrilogyKiller
             foreach (var process in processes)
             {
                 process.Kill();
+            }
+        }
+
+        public static void CreateOrGetMutex(string mutexName)
+        {
+            if (!System.Threading.Mutex.TryOpenExisting(mutexName, out _))
+            {
+                new System.Threading.Mutex(false, mutexName);
             }
         }
 
