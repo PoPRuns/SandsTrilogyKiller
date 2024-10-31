@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -67,9 +67,9 @@ namespace SandsTrilogyKiller
                 Keys vkCode = (Keys)Marshal.ReadInt32(lParam);
                 if (vkCode == Hotkey && !HotkeyTextBoxOnFocus)
                 {
-                    CloseProcesses(Process.GetProcessesByName("POP"));
-                    CloseProcesses(Process.GetProcessesByName("POP2"));
-                    CloseProcesses(Process.GetProcessesByName("POP3"));
+                    ForceCloseProcesses(Process.GetProcessesByName("POP"));
+                    ForceCloseProcesses(Process.GetProcessesByName("POP2"));
+                    ForceCloseProcesses(Process.GetProcessesByName("POP3"));
                     if (SteamLaunch)
                     {
                         ForceCloseProcesses(Process.GetProcessesByName("PrinceOfPersia"));
@@ -90,6 +90,9 @@ namespace SandsTrilogyKiller
                         {
                             System.Threading.Thread.Sleep(killerSpeed);
                             CreateOrGetMutex(GameData[SelectedGame]["MutexName"]);
+
+                            DeleteCrashLog(GameLauncherPath);
+
                             Process proc = Process.Start(GameLauncherPath);
                             if (PriorityAffinity)
                             {
@@ -114,21 +117,20 @@ namespace SandsTrilogyKiller
             return CallNextHookEx(hookId, nCode, wParam, lParam);
         }
 
-        public static void CloseProcesses(Process[] processes)
-        {
-            foreach (var process in processes)
-            {
-                process.CloseMainWindow();
-                process.WaitForExit();
-                process.Dispose();
-            }
-        }
-
         public static void ForceCloseProcesses(Process[] processes)
         {
             foreach (var process in processes)
             {
                 process.Kill();
+            }
+        }
+
+        public static void DeleteCrashLog(string GameLauncherPath)
+        {
+            string filePath = Path.Combine(Path.GetDirectoryName(GameLauncherPath), "PrinceSM");
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
             }
         }
 
