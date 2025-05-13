@@ -70,6 +70,7 @@ namespace SandsTrilogyKiller
                     ForceCloseProcesses(Process.GetProcessesByName("POP"));
                     ForceCloseProcesses(Process.GetProcessesByName("POP2"));
                     ForceCloseProcesses(Process.GetProcessesByName("POP3"));
+                    DeleteCrashLog(GameLauncherPath);
                     if (SteamLaunch)
                     {
                         ForceCloseProcesses(Process.GetProcessesByName("PrinceOfPersia"));
@@ -90,8 +91,6 @@ namespace SandsTrilogyKiller
                         {
                             System.Threading.Thread.Sleep(killerSpeed);
                             CreateOrGetMutex(GameData[SelectedGame]["MutexName"]);
-
-                            DeleteCrashLog(GameLauncherPath);
 
                             Process proc = Process.Start(GameLauncherPath);
                             if (PriorityAffinity)
