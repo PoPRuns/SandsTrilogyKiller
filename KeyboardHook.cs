@@ -70,10 +70,10 @@ namespace SandsTrilogyKiller
                     ForceCloseProcesses(Process.GetProcessesByName("POP"));
                     ForceCloseProcesses(Process.GetProcessesByName("POP2"));
                     ForceCloseProcesses(Process.GetProcessesByName("POP3"));
+                    ForceCloseProcesses(Process.GetProcessesByName("PrinceOfPersia"));
                     DeleteCrashLog(GameLauncherPath);
                     if (SteamLaunch)
                     {
-                        ForceCloseProcesses(Process.GetProcessesByName("PrinceOfPersia"));
                         try
                         {
                             Process.Start($"steam://run/{GameData[SelectedGame]["SteamID"]}");
