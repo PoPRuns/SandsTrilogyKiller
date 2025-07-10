@@ -8,10 +8,12 @@ namespace SandsTrilogyKiller
     public partial class MainForm : Form
     {
         private KeyboardHook hook = new KeyboardHook();
+        private DarkModeCS dm;
 
         public MainForm()
         {
             InitializeComponent();
+            dm = new DarkModeCS(this);
             cmbActiveGame.SelectedIndex = Properties.Settings.Default.activeGame;
             hook.Hotkey = Properties.Settings.Default.hotkey;
             txtHotkey.Text = hook.Hotkey.ToString();
