@@ -25,7 +25,7 @@ namespace SandsTrilogyKiller.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("sot.lnk")]
+        [global::System.Configuration.DefaultSettingValueAttribute("pop.exe")]
         public string pathSoT {
             get {
                 return ((string)(this["pathSoT"]));
@@ -37,7 +37,7 @@ namespace SandsTrilogyKiller.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ww.lnk")]
+        [global::System.Configuration.DefaultSettingValueAttribute("pop2.exe")]
         public string pathWW {
             get {
                 return ((string)(this["pathWW"]));
@@ -49,7 +49,7 @@ namespace SandsTrilogyKiller.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("t2t.lnk")]
+        [global::System.Configuration.DefaultSettingValueAttribute("pop3.exe")]
         public string pathT2T {
             get {
                 return ((string)(this["pathT2T"]));
