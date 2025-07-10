@@ -114,10 +114,9 @@ namespace SandsTrilogyKiller
             }
         }
 
-        private void trackBarKillerDelay_Scroll(object sender, EventArgs e)
+        private void numericUpDownKillerDelay_ValueChanged(object sender, EventArgs e)
         {
-            hook.killerSpeed = trackBarKillerDelay.Value;
-            labelKillerDelayMs.Text = trackBarKillerDelay.Value.ToString() + " ms";
+            hook.killerSpeed = (int)numericUpDownKillerDelay.Value;
         }
 
         private void cboxPriorityAffinity_CheckStateChanged(object sender, EventArgs e)
@@ -146,7 +145,24 @@ namespace SandsTrilogyKiller
 
         private void cboxSteam_CheckStateChanged(object sender, EventArgs e)
         {
-            hook.SteamLaunch = cboxSteam.Checked;
+            bool cboxChecked = cboxSteam.Checked;
+            hook.SteamLaunch = cboxChecked;
+
+            var controlsToToggle = new Control[]
+            {
+                txtPathSoT,
+                txtPathWW,
+                txtPathT2T,
+                btnChangePathSoT,
+                btnChangePathWW,
+                btnChangePathT2T,
+                numericUpDownKillerDelay,
+            };
+
+            foreach (var control in controlsToToggle)
+            {
+                control.Enabled = !cboxChecked;
+            }
         }
     }
 }

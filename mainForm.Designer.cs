@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.txtPathSoT = new System.Windows.Forms.TextBox();
             this.txtPathWW = new System.Windows.Forms.TextBox();
             this.btnChangePathSoT = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.lblHotkey = new System.Windows.Forms.Label();
             this.txtHotkey = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.trackBarKillerDelay = new System.Windows.Forms.TrackBar();
             this.labelKillerDelay = new System.Windows.Forms.Label();
             this.labelKillerDelayMs = new System.Windows.Forms.Label();
             this.cboxPriorityAffinity = new System.Windows.Forms.CheckBox();
@@ -53,18 +53,20 @@
             this.affinityComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.cboxSteam = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarKillerDelay)).BeginInit();
+            this.numericUpDownKillerDelay = new System.Windows.Forms.NumericUpDown();
             this.contextMenuPriorityAffinity.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownKillerDelay)).BeginInit();
             this.SuspendLayout();
             // 
             // txtPathSoT
             // 
             this.txtPathSoT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPathSoT.Location = new System.Drawing.Point(64, 111);
+            this.txtPathSoT.Location = new System.Drawing.Point(65, 104);
             this.txtPathSoT.Margin = new System.Windows.Forms.Padding(4);
             this.txtPathSoT.Name = "txtPathSoT";
-            this.txtPathSoT.Size = new System.Drawing.Size(315, 22);
+            this.txtPathSoT.ReadOnly = true;
+            this.txtPathSoT.Size = new System.Drawing.Size(313, 22);
             this.txtPathSoT.TabIndex = 2;
             this.txtPathSoT.TextChanged += new System.EventHandler(this.CurrentGameLauncherPathChanged);
             // 
@@ -72,17 +74,18 @@
             // 
             this.txtPathWW.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPathWW.Location = new System.Drawing.Point(64, 143);
+            this.txtPathWW.Location = new System.Drawing.Point(65, 136);
             this.txtPathWW.Margin = new System.Windows.Forms.Padding(4);
             this.txtPathWW.Name = "txtPathWW";
-            this.txtPathWW.Size = new System.Drawing.Size(315, 22);
+            this.txtPathWW.ReadOnly = true;
+            this.txtPathWW.Size = new System.Drawing.Size(313, 22);
             this.txtPathWW.TabIndex = 3;
             this.txtPathWW.TextChanged += new System.EventHandler(this.CurrentGameLauncherPathChanged);
             // 
             // btnChangePathSoT
             // 
             this.btnChangePathSoT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChangePathSoT.Location = new System.Drawing.Point(388, 109);
+            this.btnChangePathSoT.Location = new System.Drawing.Point(387, 102);
             this.btnChangePathSoT.Margin = new System.Windows.Forms.Padding(4);
             this.btnChangePathSoT.Name = "btnChangePathSoT";
             this.btnChangePathSoT.Size = new System.Drawing.Size(40, 28);
@@ -94,7 +97,7 @@
             // btnChangePathWW
             // 
             this.btnChangePathWW.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChangePathWW.Location = new System.Drawing.Point(388, 141);
+            this.btnChangePathWW.Location = new System.Drawing.Point(387, 134);
             this.btnChangePathWW.Margin = new System.Windows.Forms.Padding(4);
             this.btnChangePathWW.Name = "btnChangePathWW";
             this.btnChangePathWW.Size = new System.Drawing.Size(40, 28);
@@ -107,17 +110,18 @@
             // 
             this.txtPathT2T.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPathT2T.Location = new System.Drawing.Point(64, 175);
+            this.txtPathT2T.Location = new System.Drawing.Point(65, 168);
             this.txtPathT2T.Margin = new System.Windows.Forms.Padding(4);
             this.txtPathT2T.Name = "txtPathT2T";
-            this.txtPathT2T.Size = new System.Drawing.Size(315, 22);
+            this.txtPathT2T.ReadOnly = true;
+            this.txtPathT2T.Size = new System.Drawing.Size(313, 22);
             this.txtPathT2T.TabIndex = 4;
             this.txtPathT2T.TextChanged += new System.EventHandler(this.CurrentGameLauncherPathChanged);
             // 
             // btnChangePathT2T
             // 
             this.btnChangePathT2T.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChangePathT2T.Location = new System.Drawing.Point(388, 173);
+            this.btnChangePathT2T.Location = new System.Drawing.Point(387, 166);
             this.btnChangePathT2T.Margin = new System.Windows.Forms.Padding(4);
             this.btnChangePathT2T.Name = "btnChangePathT2T";
             this.btnChangePathT2T.Size = new System.Drawing.Size(40, 28);
@@ -130,7 +134,7 @@
             // 
             this.lblPathSoT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPathSoT.AutoSize = true;
-            this.lblPathSoT.Location = new System.Drawing.Point(16, 115);
+            this.lblPathSoT.Location = new System.Drawing.Point(17, 108);
             this.lblPathSoT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPathSoT.Name = "lblPathSoT";
             this.lblPathSoT.Size = new System.Drawing.Size(36, 16);
@@ -141,7 +145,7 @@
             // 
             this.lblPathWW.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPathWW.AutoSize = true;
-            this.lblPathWW.Location = new System.Drawing.Point(16, 147);
+            this.lblPathWW.Location = new System.Drawing.Point(17, 140);
             this.lblPathWW.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPathWW.Name = "lblPathWW";
             this.lblPathWW.Size = new System.Drawing.Size(36, 16);
@@ -152,7 +156,7 @@
             // 
             this.lblPathT2T.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPathT2T.AutoSize = true;
-            this.lblPathT2T.Location = new System.Drawing.Point(16, 179);
+            this.lblPathT2T.Location = new System.Drawing.Point(17, 172);
             this.lblPathT2T.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPathT2T.Name = "lblPathT2T";
             this.lblPathT2T.Size = new System.Drawing.Size(35, 16);
@@ -179,7 +183,7 @@
             this.lblHotkey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHotkey.AutoSize = true;
             this.lblHotkey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblHotkey.Location = new System.Drawing.Point(256, 15);
+            this.lblHotkey.Location = new System.Drawing.Point(254, 15);
             this.lblHotkey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHotkey.Name = "lblHotkey";
             this.lblHotkey.Size = new System.Drawing.Size(66, 20);
@@ -189,7 +193,7 @@
             // txtHotkey
             // 
             this.txtHotkey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtHotkey.Location = new System.Drawing.Point(339, 15);
+            this.txtHotkey.Location = new System.Drawing.Point(337, 15);
             this.txtHotkey.Margin = new System.Windows.Forms.Padding(4);
             this.txtHotkey.Name = "txtHotkey";
             this.txtHotkey.ReadOnly = true;
@@ -199,42 +203,30 @@
             // 
             // openFileDialog
             // 
-            this.openFileDialog.Filter = "PoP Executable|pop.exe;pop2.exe;pop3.exe|All Files (*.*)|*.*";
-            // 
-            // trackBarKillerDelay
-            // 
-            this.trackBarKillerDelay.LargeChange = 100;
-            this.trackBarKillerDelay.Location = new System.Drawing.Point(19, 68);
-            this.trackBarKillerDelay.Margin = new System.Windows.Forms.Padding(4);
-            this.trackBarKillerDelay.Maximum = 2000;
-            this.trackBarKillerDelay.Name = "trackBarKillerDelay";
-            this.trackBarKillerDelay.Size = new System.Drawing.Size(147, 56);
-            this.trackBarKillerDelay.SmallChange = 10;
-            this.trackBarKillerDelay.TabIndex = 15;
-            this.trackBarKillerDelay.TickFrequency = 1000;
-            this.trackBarKillerDelay.Scroll += new System.EventHandler(this.trackBarKillerDelay_Scroll);
+            this.openFileDialog.Filter = "PoP Executable|pop.exe;pop2.exe;pop3.exe";
             // 
             // labelKillerDelay
             // 
             this.labelKillerDelay.AutoSize = true;
             this.labelKillerDelay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelKillerDelay.Location = new System.Drawing.Point(17, 47);
+            this.labelKillerDelay.Location = new System.Drawing.Point(14, 49);
             this.labelKillerDelay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelKillerDelay.Name = "labelKillerDelay";
             this.labelKillerDelay.Size = new System.Drawing.Size(96, 20);
             this.labelKillerDelay.TabIndex = 17;
             this.labelKillerDelay.Text = "Killer delay:";
+            this.toolTip1.SetToolTip(this.labelKillerDelay, "Use only if you are having issues, otherwise leave it at 0.");
             // 
             // labelKillerDelayMs
             // 
             this.labelKillerDelayMs.AutoSize = true;
             this.labelKillerDelayMs.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelKillerDelayMs.Location = new System.Drawing.Point(120, 48);
+            this.labelKillerDelayMs.Location = new System.Drawing.Point(174, 48);
             this.labelKillerDelayMs.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelKillerDelayMs.Name = "labelKillerDelayMs";
-            this.labelKillerDelayMs.Size = new System.Drawing.Size(46, 20);
+            this.labelKillerDelayMs.Size = new System.Drawing.Size(32, 20);
             this.labelKillerDelayMs.TabIndex = 18;
-            this.labelKillerDelayMs.Text = "0 ms";
+            this.labelKillerDelayMs.Text = "ms";
             // 
             // cboxPriorityAffinity
             // 
@@ -246,7 +238,8 @@
             this.cboxPriorityAffinity.Size = new System.Drawing.Size(160, 20);
             this.cboxPriorityAffinity.TabIndex = 19;
             this.cboxPriorityAffinity.Text = "Set Priority and Affinity";
-            this.toolTip1.SetToolTip(this.cboxPriorityAffinity, "Set custom priority and affinity while launching. Right click for more options.");
+            this.toolTip1.SetToolTip(this.cboxPriorityAffinity, "Set custom priority and affinity while launching. Right click for more options.\nK" +
+        "eep this unchecked unless you know what you are doing.");
             this.cboxPriorityAffinity.UseVisualStyleBackColor = true;
             this.cboxPriorityAffinity.CheckStateChanged += new System.EventHandler(this.cboxPriorityAffinity_CheckStateChanged);
             // 
@@ -302,14 +295,36 @@
             this.cboxSteam.Size = new System.Drawing.Size(135, 20);
             this.cboxSteam.TabIndex = 20;
             this.cboxSteam.Text = "Launch via Steam";
+            this.toolTip1.SetToolTip(this.cboxSteam, "This is not required even if you have the Steam version of the games.\nUse only if" +
+        " you want to use certain Steam features like Steam Input. Slower by a few second" +
+        "s.");
             this.cboxSteam.UseVisualStyleBackColor = true;
             this.cboxSteam.CheckStateChanged += new System.EventHandler(this.cboxSteam_CheckStateChanged);
+            // 
+            // numericUpDownKillerDelay
+            // 
+            this.numericUpDownKillerDelay.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDownKillerDelay.Location = new System.Drawing.Point(117, 49);
+            this.numericUpDownKillerDelay.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.numericUpDownKillerDelay.Name = "numericUpDownKillerDelay";
+            this.numericUpDownKillerDelay.Size = new System.Drawing.Size(59, 22);
+            this.numericUpDownKillerDelay.TabIndex = 21;
+            this.numericUpDownKillerDelay.ValueChanged += new System.EventHandler(this.numericUpDownKillerDelay_ValueChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 212);
+            this.ClientSize = new System.Drawing.Size(442, 203);
+            this.Controls.Add(this.numericUpDownKillerDelay);
             this.Controls.Add(this.cboxSteam);
             this.Controls.Add(this.cboxPriorityAffinity);
             this.Controls.Add(this.btnChangePathSoT);
@@ -325,17 +340,17 @@
             this.Controls.Add(this.txtPathT2T);
             this.Controls.Add(this.btnChangePathWW);
             this.Controls.Add(this.txtPathWW);
-            this.Controls.Add(this.trackBarKillerDelay);
             this.Controls.Add(this.labelKillerDelayMs);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1061, 358);
-            this.MinimumSize = new System.Drawing.Size(18, 196);
+            this.MinimumSize = new System.Drawing.Size(460, 250);
             this.Name = "MainForm";
             this.Text = "SandsTrilogyKiller";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarKillerDelay)).EndInit();
             this.contextMenuPriorityAffinity.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownKillerDelay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,7 +371,6 @@
         private System.Windows.Forms.Label lblHotkey;
         private System.Windows.Forms.TextBox txtHotkey;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.TrackBar trackBarKillerDelay;
         private System.Windows.Forms.Label labelKillerDelay;
         private System.Windows.Forms.Label labelKillerDelayMs;
         public System.Windows.Forms.CheckBox cboxPriorityAffinity;
@@ -367,6 +381,7 @@
         private System.Windows.Forms.ToolStripComboBox priorityComboBox;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox cboxSteam;
+        private System.Windows.Forms.NumericUpDown numericUpDownKillerDelay;
     }
 }
 
