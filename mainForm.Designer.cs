@@ -1,4 +1,4 @@
-﻿namespace SandsTrilogyKiller
+namespace SandsTrilogyKiller
 {
     public partial class MainForm
     {
@@ -341,7 +341,6 @@
             this.Controls.Add(this.btnChangePathWW);
             this.Controls.Add(this.txtPathWW);
             this.Controls.Add(this.labelKillerDelayMs);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1061, 358);

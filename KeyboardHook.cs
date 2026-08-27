@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -7,12 +7,12 @@ using System.Windows.Forms;
 
 namespace SandsTrilogyKiller
 {
-    class KeyboardHook
+    class KeyboardHook : IDisposable
     {
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYUP = 0x0101;
         private readonly LowLevelKeyboardProc proc;
-        private readonly IntPtr hookId;
+        private IntPtr hookId;
         private static readonly Dictionary<string, Dictionary<string, string>> GameData = new Dictionary<string, Dictionary<string, string>>
         {
             {
@@ -58,6 +58,12 @@ namespace SandsTrilogyKiller
         ~KeyboardHook()
         {
             UnhookWindowsHookEx(hookId);
+        }
+
+        public void Dispose()
+        {
+            UnhookWindowsHookEx(hookId);
+            GC.SuppressFinalize(this);
         }
 
         private IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)

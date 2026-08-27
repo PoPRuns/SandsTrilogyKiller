@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 using System.Diagnostics;
-using System.IO;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SandsTrilogyKiller
@@ -8,12 +8,11 @@ namespace SandsTrilogyKiller
     public partial class MainForm : Form
     {
         private KeyboardHook hook = new KeyboardHook();
-        private DarkModeCS dm;
 
         public MainForm()
         {
             InitializeComponent();
-            dm = new DarkModeCS(this);
+            try { this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath); } catch { }
             cmbActiveGame.SelectedIndex = Properties.Settings.Default.activeGame;
             hook.Hotkey = Properties.Settings.Default.hotkey;
             txtHotkey.Text = hook.Hotkey.ToString();
@@ -24,9 +23,9 @@ namespace SandsTrilogyKiller
             SetGameLauncherPath();
 
             int coreCount = Environment.ProcessorCount;
-            for (int i = 0;  i < coreCount; i++) affinityComboBox.Items.Add("CPU " + i.ToString());
+            for (int i = 0; i < coreCount; i++) affinityComboBox.Items.Add("CPU " + i.ToString());
             hook.Priority = Properties.Settings.Default.priority;
-            hook.Affinity = (System.IntPtr)Properties.Settings.Default.affinity;
+            hook.Affinity = (IntPtr)Properties.Settings.Default.affinity;
             switch (Properties.Settings.Default.priority)
             {
                 case ProcessPriorityClass.RealTime      : priorityComboBox.SelectedIndex = 0; break;
@@ -41,8 +40,28 @@ namespace SandsTrilogyKiller
             hook.PriorityAffinity = cboxPriorityAffinity.Checked;
         }
 
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            ThemeManager.ApplyTheme(this, ThemeManager.IsSystemDarkMode());
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_SETTINGCHANGE = 0x001A;
+            const int WM_THEMECHANGED = 0x031A;
+
+            if (m.Msg == WM_SETTINGCHANGE || m.Msg == WM_THEMECHANGED)
+            {
+                ThemeManager.ApplyTheme(this, ThemeManager.IsSystemDarkMode());
+            }
+
+            base.WndProc(ref m);
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            hook.Dispose();
             Properties.Settings.Default.activeGame = cmbActiveGame.SelectedIndex;
             Properties.Settings.Default.hotkey = hook.Hotkey;
             Properties.Settings.Default.pathSoT = txtPathSoT.Text;
@@ -142,7 +161,7 @@ namespace SandsTrilogyKiller
 
         private void affinityComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            hook.Affinity = (System.IntPtr)Math.Pow(2, affinityComboBox.SelectedIndex);
+            hook.Affinity = (IntPtr)Math.Pow(2, affinityComboBox.SelectedIndex);
         }
 
         private void cboxSteam_CheckStateChanged(object sender, EventArgs e)

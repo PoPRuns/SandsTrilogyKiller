@@ -11,5 +11,4 @@
 
 ## Credits
 
-* BlueMystical for [Dark Mode plugin](https://github.com/BlueMystical/Dark-Mode-Forms)
 * u/riccardo_pace for the [icon](https://www.reddit.com/r/PrinceOfPersia/comments/nz7qed/i_made_this_for_the_reddit_pic_totally_changed/)
